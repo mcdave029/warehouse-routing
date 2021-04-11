@@ -17,17 +17,39 @@ ActiveStorage.start()
 window.jQuery = $;
 window.$ = $;
 
-$(function() {
+$( document ).on('turbolinks:load', function() {
   $(".multiple-select2").select2();
 
-  $(".modal-form").on("show.bs.modal", function(event) {
-    var button = event.relatedTarget;
-    var object = JSON.parse(button.getAttribute("data-bs-object"));
+  function updateEditDestinationForm(object) {
     var form = $("#edit_destination");
     form.find("#destination_name").val(object.name);
     form.find("#edit_destination_references").val(object.references);
     form.find("#edit_destination_categories").val(object.categories);
     $(".multiple-select2").trigger("change");
     form.attr("action", form.attr("action").replace(/(\d+)$/g, object.id));
+  }
+
+  function updateEditProductForm(object) {
+    var form = $("#edit_product");
+    form.find("#product_name").val(object.name);
+    form.find("#product_price").val(object.price);
+    form.find("#product_reference").val(object.reference);
+    form.find("#product_category").val(object.category);
+    form.attr("action", form.attr("action").replace(/(\d+)$/g, object.id));
+  }
+
+  $(".modal-form").on("show.bs.modal", function(event) {
+    var button = event.relatedTarget;
+    var object = JSON.parse(button.getAttribute("data-bs-object"));
+    var klass = button.getAttribute("data-bs-object-klass");
+    switch(klass) {
+      case "Destination":
+        updateEditDestinationForm(object);
+        break
+      case "Product":
+        updateEditProductForm(object);
+        break
+      default: break
+    }
   });
 });

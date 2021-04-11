@@ -1,13 +1,13 @@
 <% @destinations.each do |destination| %>
   <tr>
-    <td><%= destination.name %></td>
-    <td><%= destination.references.to_sentence %></td>
-    <td><%= destination.categories.to_sentence %></td>
-    <td>
-      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editDestinationModal" data-bs-object="<%= destination.to_json %>">
+    <td class="align-middle"><%= destination.name %></td>
+    <td class="align-middle"><%= destination.references.to_sentence %></td>
+    <td class="align-middle"><%= destination.categories.to_sentence %></td>
+    <td class="align-middle">
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editDestinationModal" data-bs-object="<%= destination.to_json %>" data-bs-object-klass="Destination">
         Edit
       </button>
     </td>
-    <td><%= link_to 'Destroy', destination, class: 'btn btn-outline-danger', method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+    <td class="align-middle"><%= link_to 'Delete', destination, class: 'btn btn-outline-danger', method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

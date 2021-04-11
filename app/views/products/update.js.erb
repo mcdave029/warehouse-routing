@@ -1,0 +1,12 @@
+var element = $("#notice");
+<% if @product.errors.blank? %>
+  $("#products_list").html("<%= escape_javascript(render("products_list")) %>");
+  element.removeClass("alert alert-danger");
+  element.addClass("alert alert-success");
+  element.html("Product was successfully updated.");
+<% else %>
+  element.removeClass("alert alert-success");
+  element.addClass("alert alert-danger");
+  element.html("<%= @product.errors.full_messages.to_sentence %>");
+<% end %>
+$("#editProductModal").modal("hide");

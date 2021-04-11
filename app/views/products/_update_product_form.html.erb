@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <%= form_for @products.first, remote: true, html: { id: "edit_product" } do |form| %>
+      <div class="modal-body">
+        <div>
+          <%= form.label :name, class: 'form-label' %>
+          <%= form.text_field :name, class: 'form-control' %>
+        </div>
+        <div>
+          <%= form.label :price, class: 'form-label' %>
+          <%= form.number_field :price, step: :any, class: 'form-control' %>
+        </div>
+        <div>
+          <%= form.label :reference, class: 'form-label' %>
+          <%= form.select :reference, Constants::REFERENCES, {}, class: 'form-select' %>
+        </div>
+        <div>
+          <%= form.label :category, class: 'form-label' %>
+          <%= form.select :category, Constants::CATEGORIES, {}, class: 'form-select' %>
+        </div>
+        <div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+
+        <%= form.submit class: 'btn btn-outline-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

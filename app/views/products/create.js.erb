@@ -1,0 +1,16 @@
+var element = $('#notice');
+<% if @product.persisted? %>
+  $('#products_list').html("<%= escape_javascript(render('products_list')) %>");
+  $('#new_product')[0].reset();
+  element.removeClass("alert alert-danger");
+  element.addClass("alert alert-success");
+  element.html("Product was successfully created.");
+<% else %>
+  element.removeClass("alert alert-success");
+  element.addClass("alert alert-danger");
+  element.html("<%= @product.errors.full_messages.to_sentence %>");
+<% end %>
+
+<% if @products.present? %>
+  $('#editProductModal').html("<%= escape_javascript(render('update_product_form')) %>");
+<% end %>

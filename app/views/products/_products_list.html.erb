@@ -1,0 +1,15 @@
+<% @products.each do |product| %>
+  <tr>
+    <td class="align-middle"><%= product.name %></td>
+    <td class="align-middle"><%= product.price %></td>
+    <td class="align-middle"><%= product.reference %></td>
+    <td class="align-middle"><%= product.category %></td>
+    <td class="align-middle"><%= product.destination&.name %></td>
+    <td class="align-middle">
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProductModal" data-bs-object="<%= product.to_json %>" data-bs-object-klass="Product">
+        Edit
+      </button>
+    </td>
+    <td class="align-middle"><%= link_to 'Delete', product, class: 'btn btn-outline-danger', method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>

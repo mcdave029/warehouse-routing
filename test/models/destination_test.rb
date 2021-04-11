@@ -14,6 +14,10 @@
 require 'test_helper'
 
 class DestinationTest < ActiveSupport::TestCase
+  context 'associations' do
+    should have_many(:products).dependent(:nullify)
+  end
+
   context 'validations' do
     should validate_uniqueness_of(:name)
   end

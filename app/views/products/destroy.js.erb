@@ -1,0 +1,5 @@
+$('#products_list').html("<%= escape_javascript(render('products_list')) %>");
+var element = $('#notice');
+element.removeClass("alert alert-danger");
+element.addClass("alert alert-success");
+element.html("Product was successfully deleted.");

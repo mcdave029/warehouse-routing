@@ -47,9 +47,9 @@ class DestinationsTest < ApplicationSystemTestCase
   test 'destroying a Destination' do
     visit destinations_url
     page.accept_confirm do
-      click_on 'Destroy', match: :first
+      click_on 'Delete', match: :first
     end
 
-    assert_text 'Destination was successfully destroyed'
+    assert_text 'Destination was successfully deleted'
   end
 end

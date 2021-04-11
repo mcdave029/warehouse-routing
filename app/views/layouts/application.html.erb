@@ -12,6 +12,14 @@
 
   <body>
     <div class="container">
+      <ul class="nav nav-tabs justify-content-center mb-3 mt-3">
+        <li class="nav-item">
+          <%= link_to "Destinations", root_path, class: "nav-link #{active_page?(path: root_path)}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Products", products_path, class: "nav-link #{active_page?(path: products_path)}" %>
+        </li>
+      </ul>
       <%= yield %>
     </div>
   </body>

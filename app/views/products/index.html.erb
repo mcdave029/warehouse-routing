@@ -1,0 +1,49 @@
+<h1>Products</h1>
+
+<div id="notice" role="alert"></div>
+
+<!-- Modal -->
+<div class="modal fade modal-form" id="editProductModal" tabindex="-1" aria-labelledby="Update Product Form" aria-hidden="true">
+  <%= render "update_product_form" if @products.present? %>
+</div>
+
+<%= form_for @product, remote: true do |form| %>
+  <div class="row align-items-end">
+    <div class="col">
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= form.label :price, class: 'form-label' %>
+      <%= form.number_field :price, step: :any, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= form.label :reference, class: 'form-label' %>
+      <%= form.select :reference, Constants::REFERENCES, {}, class: 'form-select' %>
+    </div>
+    <div class="col">
+      <%= form.label :category, class: 'form-label' %>
+      <%= form.select :category, Constants::CATEGORIES, {}, class: 'form-select' %>
+    </div>
+    <div class="col">
+      <%= form.submit class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Reference</th>
+      <th>Category</th>
+      <th>Destination</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody id="products_list">
+    <%= render 'products_list' %>
+  </tbody>
+</table>

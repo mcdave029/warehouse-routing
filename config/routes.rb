@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root 'destinations#index'
 
   resources :destinations, except: %i[show new edit]
+  resources :products, except: %i[show new edit]
 end
