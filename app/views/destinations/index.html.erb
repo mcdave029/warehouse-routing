@@ -1,0 +1,43 @@
+<h1>Destinations</h1>
+
+<div id="notice" role="alert"></div>
+
+<!-- Modal -->
+<div class="modal fade modal-form" id="editDestinationModal" tabindex="-1" aria-labelledby="Update Destination Form" aria-hidden="true">
+  <%= render "update_destination_form" if @destinations.present? %>
+</div>
+
+<%= form_for @destination, remote: true do |form| %>
+  <div class="row align-items-start">
+    <div class="col">
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= form.label :references, class: 'form-label' %>
+      <%= form.select :references, Constants::REFERENCES, {}, multiple: true, style: "width: 100%", class: 'multiple-select2' %>
+    </div>
+    <div class="col">
+      <%= form.label :categories, class: 'form-label' %>
+      <%= form.select :categories, Constants::CATEGORIES, {}, multiple: true, style: "width: 100%", class: 'multiple-select2' %>
+    </div>
+    <div class="col text-center">
+      <%= form.submit class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>References</th>
+      <th>Categories</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="destinations_list">
+    <%= render 'destinations_list' %>
+  </tbody>
+</table>

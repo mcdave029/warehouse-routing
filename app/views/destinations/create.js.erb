@@ -1,0 +1,17 @@
+var element = $('#notice');
+<% if @destination.persisted? %>
+  $('#destinations_list').html("<%= escape_javascript(render('destinations_list')) %>");
+  $('#new_destination')[0].reset();
+  $(".multiple-select2").trigger("change");
+  element.removeClass("alert alert-danger");
+  element.addClass("alert alert-success");
+  element.html("Destination was successfully created.");
+<% else %>
+  element.removeClass("alert alert-success");
+  element.addClass("alert alert-danger");
+  element.html("<%= @destination.errors.full_messages.to_sentence %>");
+<% end %>
+
+<% if @destinations.present? %>
+  $('#editDesinationModal').html("<%= escape_javascript(render('update_destination_form')) %>");
+<% end %>

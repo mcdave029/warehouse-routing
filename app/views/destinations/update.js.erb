@@ -1,0 +1,12 @@
+var element = $("#notice");
+<% if @destination.errors.blank? %>
+  $("#destinations_list").html("<%= escape_javascript(render("destinations_list")) %>");
+  element.removeClass("alert alert-danger");
+  element.addClass("alert alert-success");
+  element.html("Destination was successfully updated.");
+<% else %>
+  element.removeClass("alert alert-success");
+  element.addClass("alert alert-danger");
+  element.html("<%= @destination.errors.full_messages.to_sentence %>");
+<% end %>
+$("#editDestinationModal").modal("hide");

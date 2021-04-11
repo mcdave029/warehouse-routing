@@ -1,0 +1,5 @@
+$('#destinations_list').html("<%= escape_javascript(render('destinations_list')) %>");
+var element = $('#notice');
+element.removeClass("alert alert-danger");
+element.addClass("alert alert-success");
+element.html("Destination was successfully destroyed.");
